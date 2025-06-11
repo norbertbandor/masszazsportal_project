@@ -1,0 +1,135 @@
+
+MASSZÁZSPORTÁL.HU – FEJLESZTÉSI SPECIFIKÁCIÓ
+
+Projekt célja:
+Szakmailag ellenőrzött masszőrök, csontkovácsok, terapeuták és páciensek összekötése. Minden szakember csak adminisztrátori ellenőrzés és jóváhagyás után jelenik meg a portálon.
+
+Domain: masszazsportal.hu
+
+1. Felhasználói szerepkörök
+
+- Vendég (páciens)
+- Szakember (masszőr, csontkovács, terapeuta, reflexológus, stb.)
+- Adminisztrátor
+
+2. Regisztráció és jóváhagyás
+
+Szakember regisztráció:
+- Feltöltendő egy legfeljebb 1 MB-os JPG profilkép.
+- Feltöltendő egy legfeljebb 3 MB-os szakképesítési igazolás (JPG, PDF, stb.), amit admin jóváhagyás után azonnal törlünk. Erről regisztráció során egyértelmű tájékoztatást kap.
+- Kötelező mezők:
+  - Teljes név (nem módosítható később)
+  - E-mail cím (belépési név, e-mail megerősítés szükséges, módosítható csak e-mail-es megerősítés után)
+  - Jelszó (minimum 8 karakter, kétszer megadva)
+  - Nem (férfi/nő)
+  - Szakma típus (többszörös választás: masszőr, csontkovács, reflexológus, egyéb – utóbbi esetén max. 12 karakteres megjegyzéssel)
+    - Ha "masszőr" is kiválasztva, további masszázstípusok is megadhatók (többszörös), „egyéb” választásával szabad mező (max. 12 karakter).
+  - Fogad-e telephelyen, megy-e házhoz (mindkettő választható)
+    - Telephely esetén: cím (irányítószám, város, utca, házszám, emelet/ajtó – opcionális)
+    - Házhozmenetel esetén: város(ok) vesszővel, és kiszállási díj (forintban)
+  - Telefonszám, e-mail (ezek CSAK regisztrált vendégeknek láthatók)
+  - Bemutatkozás (max. 500 karakter)
+- Regisztráció admin jóváhagyás után aktív:
+  - Adminisztrátor látja a jelentkezéseket, a szakmai dokumentumot, és egy gombnyomással jóváhagyhatja/utasíthatja el.
+  - Jóváhagyás után a szakképesítési dokumentum automatikusan törlődik, erről e-mailt kap a szakember.
+
+Vendég regisztráció:
+- Név (nem módosítható)
+- E-mail (belépési név, megerősítendő e-mailben)
+- Jelszó (minimum 8 karakter, kétszer megadva)
+- Nem (férfi/nő)
+- Regisztráció után e-mailes megerősítés: csak a visszaigazoló linkre kattintás után aktív a fiók.
+
+3. Bejelentkezés és profilmódosítás
+
+- Bejelentkezés: e-mail + jelszó, minden szerepkörnek.
+- Profilmódosítás:
+  - Vendég: minden adat módosítható a néven kívül.
+  - Szakember: minden adat módosítható a néven kívül; e-mail módosítás csak megerősítéssel.
+- Elfelejtett jelszó/jelszó visszaállítás: minden szerepkör számára, e-mailes tokenes rendszerrel.
+- Jelszó módosítása: bejelentkezve bármikor lehetséges, e-mailes értesítéssel.
+
+4. Keresés, szűrés, adatvédelmi korlátok
+
+- Keresés/szűrés:
+  - Nem regisztrált és regisztrált vendégek is kereshetnek szakemberek között.
+  - Csak admin által jóváhagyott szakemberek jelennek meg keresésben/listában.
+  - Szűrés a regisztráció során megadott adatok szerint (szakma, masszázstípus, helyszín, nem, kiszállás stb.).
+  - Elérhetőségi adatok (e-mail, telefonszám) csak regisztrált vendégeknek jelennek meg.
+- Szakemberek értékelése:
+  - 1–5-ig terjedő skála, max. 100 karakteres szöveges értékeléssel.
+  - Csak regisztrált vendégek értékelhetnek.
+  - Értékelés csak admin jóváhagyás után jelenik meg.
+
+5. Blog/tartalomkezelés
+
+- Admin felületen blogbejegyzések írása, szerkesztése, törlése.
+- Legfrissebb bejegyzések megjelenítése a főoldalon.
+- Régebbi bejegyzések lenyitható listában, keresési lehetőséggel.
+- Bejegyzések Facebook-on megoszthatók legyenek.
+
+6. Főoldal, dizájn, általános követelmények
+
+- Főoldal elemei:
+  - Felül, jól láthatóan a logó, amely mindig visszavisz a főoldalra.
+  - Bemutatkozó, bizalomépítő szöveg:
+    Masszázsportál.hu – Az ország szakmailag ellenőrzött masszőr, csontkovács és terapeuta adatbázisa
+
+    Szeretné megtalálni az Önhöz legközelebb dolgozó, megbízható és szakképzett masszőrt, csontkovácsot vagy terapeutát?
+    A Masszázsportál.hu-n kizárólag adminisztrátor által ellenőrzött szakemberek között válogathat, akik szakképesítésüket igazolták és bemutatkozásukkal is segítik döntését.
+
+    Portálunk célja, hogy biztonságos és átlátható módon kösse össze a pácienseket a legjobb hazai szakemberekkel.
+    A keresőben könnyedén szűrhet szolgáltatási típus, város, kiszállás vagy telephely szerint –
+    az elérhetőségeket és értékeléseket pedig csak regisztrált felhasználóink számára jelenítjük meg.
+
+    Próbálja ki egyszerű regisztrációnkat vendégként vagy jelentkezzen szakemberként,
+    és legyen része Magyarország egyik legbizalmasabb masszázs közösségének!
+  - Fő funkciók:
+    - Szakember regisztráció
+    - Vendég regisztráció
+    - Bejelentkezés (egy űrlapon, minden szerepkörhöz)
+    - Kereső
+    - Véletlenszerűen 2 admin által jóváhagyott szakember mini-adatlapja (név, szakma, város)
+    - Legfrissebb blogbejegyzés címe, rövid részlete
+  - Láb: ÁSZF link, Impresszum link (tartalom később pótolható)
+- Kinézet:
+  - Bizalmat keltő, mobilbarát, jól áttekinthető dizájn.
+  - Ikonok, segítő grafikai elemek, ahol csak érdemes.
+- Elérhetőségi adatok védelme:
+  - Szakember telefonszám, e-mail cím csak regisztrált vendégeknek látható.
+
+7. Egyéb követelmények
+
+- Feltöltött dokumentumokat (szakképesítés) admin jóváhagyás után törölni kell!
+- Adatbázis: MySQL (utf8mb4, táblák: szakember, vendeg, admin, blog, ertekeles, visszaallitas, email_megerosites, stb.)
+- Jelszavak mindig hash-elve tárolódjanak!
+- SEO: folyamatosan frissülő tartalom (blog), keresőbarát URL-ek, meta tagek.
+- Facebook megosztási lehetőség blogposztra.
+- A fizetési rendszer (előfizetés, kiemelés, stb.) csak a projekt későbbi fázisában kerül beépítésre, jelenleg minden alapfunkció ingyenes.
+
+8. Javasolt masszázstípusok (a regisztráció során választható opciók, többszörös választás engedélyezett):
+
+- Svédmasszázs
+- Frissítő masszázs
+- Gyógymasszázs
+- Sportmasszázs
+- Talpmasszázs
+- Nyirokmasszázs
+- Cellulit masszázs
+- Lávaköves masszázs
+- Thai masszázs
+- Shiatsu masszázs
+- Relaxáló masszázs
+- Kismama masszázs
+- Reflexzóna masszázs
+- Köpölyözés
+- Mélyszöveti masszázs
+- Csokoládé masszázs
+- Aromaolajos masszázs
+- Bambusz masszázs
+- Triggerpont masszázs
+- Stresszoldó masszázs
+- Egyéb (szabad mező, max. 12 karakter)
+
+Ez a specifikáció minden lényegi követelményt tartalmaz a fejlesztés indításához, dokumentációhoz, későbbi bővítéshez.
+
